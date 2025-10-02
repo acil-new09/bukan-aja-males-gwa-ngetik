@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Pesan Estetik</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: white;
+      font-family: "Poppins", sans-serif;
+      overflow: hidden;
+    }
+    .teks {
+      font-size: 2rem;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 3s ease forwards;
+      background: linear-gradient(45deg, #ff6ec4, #7873f5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 12px;
+      background: #ff6ec4;
+      background: linear-gradient(45deg, #ff6ec4, #7873f5);
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="pesan" class="teks">
+    P, ada kah info malam ini kalo ada kabarin ya kontol
+  </div>
+
+  <button onclick="putarUlang()">🔁 Replay Suara</button>
+
+  <!-- Audio TTS pakai Google Translate -->
+  <audio id="suara" src=""></audio>
+
+  <script>
+    let teks = "P, ada kah info malam ini kalo ada kabarin ya kontol";
+    let audio = document.getElementById("suara");
+    audio.src = "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q=" + encodeURIComponent(teks) + "&tl=id";
+
+    // otomatis mainkan saat halaman terbuka
+    window.onload = () => {
+      audio.play();
+    };
+
+    function putarUlang() {
+      audio.currentTime = 0;
+      audio.play();
+    }
+  </script>
+</body>
+</html>
